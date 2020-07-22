@@ -8,11 +8,13 @@
   <body>
     <div id="list">
       <h1>{{ header.toLocaleUpperCase() }}</h1>
+      <div class="itemForm">
+          <input v-model="newList" type="text" placeholder="Please add your item" @keyup.enter="saveList">
+          <button class="btn btn-primary" @click="saveList">Save List</button>
+      </div>
       <ul>
-          <li v-for=" item in items">{{ item }}</li>
+          <li v-for="item in items">{{ item }}</li>
       </ul>
-
-      <input type="text" v-model="header" />
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
@@ -20,13 +22,20 @@
         el: '#list',
         data: {
           header: 'Vue Developer!',
+          newList: '',
           items: [
               'Pick up some ginger',
               'Vitamins at GNC',
               'Pick up some coffee',
           ]
+        },
+        methods: {
+            saveList: ()=> {
+                this.items.push(this.newList);
+                this.newList = '';
+            }
         }
-      })
+      });
     </script>
   </body>
 </html>
