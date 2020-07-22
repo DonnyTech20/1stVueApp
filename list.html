@@ -12,8 +12,8 @@
       <button v-if="state === 'default'" class="btn btn-primary">Add Item</button>
       <button v-else class="btn btn-cancle">Cancle Item</button>
     </div>
-      <div v-if="state === 'edit' " class="addform"></div>
-      <div class="itemForm">
+      <div v-if="state === 'edit' " class="addform">
+    
           <input v-model="newList" type="text" placeholder="Please add your item" @keyup.enter="saveList">
           <button class="btn btn-primary" @click="saveList">Save List</button>
       </div>
@@ -27,6 +27,7 @@
       const shopList = new Vue({
         el: '#list',
         data: {
+            state: 'default',
           header: 'Vue Developer!',
           newList: '',
           items: [
@@ -38,6 +39,11 @@
         methods: {
             saveList: function() {
                 this.items.push(this.newList);
+                this.newList = '';
+            },
+            changeState: function(){
+                this.state = newState;
+
                 this.newList = '';
             }
         }
