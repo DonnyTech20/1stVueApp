@@ -14,7 +14,7 @@
     </div>
       <div v-if="state === 'default' " class="addform">
           <input v-model="newList" type="text" placeholder="Please add your item" @keyup.enter="saveList">
-          <button class="btn btn-primary" @click="saveList">Save List</button>
+          <button class="btn btn-primary" v-bind:disable="newList.lenght === 0" @click="saveList">Save List</button>
       </div>
       <a v-bind:href="newList" target="_blank">Interactive Link</a>
       <ul>
